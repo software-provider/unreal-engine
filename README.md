@@ -58,9 +58,6 @@ This method only works with engines built from source code.
 - Restart the engine
 - Create a new project and activate the plugin inside the Plugins menu
 
-## How to use
-
-Check out our [demonstration video](https://vimeo.com/655432464) showcasing everything from setting up the project to rendering output images.
 
 ### Setup
 
@@ -178,8 +175,6 @@ Output is the `CameraPoses.csv` file, in which the first line contains column na
 
 > The coordinate system for saving camera positions and rotation quaternions is the same one used by Unreal Engine, a ***left-handed*** Z-up coordinate system.
 
-Coordinates will ***likely require conversion*** to more common reference frames for typical computer vision applications. For more information, we recommend [this Reddit post](https://www.reddit.com/r/gamedev/comments/7qh3sa/a_coordinate_system_chart_of_different_engines/). Still, it seems to be the cleanest option, as exported values will match the numbers displayed inside the engine.
-
 Following is an example Python code for accessing camera poses:
 ``` Python
 import numpy as np
@@ -271,10 +266,6 @@ The following images represent optical flows when moving forward and backward re
 
 <img src="ReadmeContent/OpticalFlowForward.jpeg" alt="Optical flow forward" width="250" style="margin:10px"/>
 <img src="ReadmeContent/OpticalFlowBackward.jpeg" alt="Optical flow backward" width="250" style="margin:10px"/>
-
-Our implementation was inspired by the [ProfFan's](https://github.com/ProfFan) [UnrealOpticalFlowDemo](https://github.com/ProfFan/UnrealOpticalFlowDemo), but we had to omit the engine patching to make this plugin as easy to use as possible (i.e. not requiring the engine to be manually built). The shader code that renders optical flow is baked inside the optical flow post-process material. It can be accessed by opening the post-process material from the plugin's content inside the Unreal Engine editor.
-
-<b>IMPORTANT:</b> Due to Unreal Engine [limitations](https://github.com/EpicGames/UnrealEngine/pull/6933) optical flow rendering assumes all objects other than the camera are stationary. If there are moving objects in the scene while rendering the sequence, the optical flow for these pixels will be incorrect.
 
 Following is an example Python code for loading optical flow from an `.exr` image and applying it to the appropriate image from a sequence, to produce its successor:
 ``` Python
